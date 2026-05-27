@@ -31,6 +31,24 @@ public class TicketService {
         }
     }
 
+    public Ticket updateTicket(Long ticketId, String newTitle, String newDescription, User user){
+        Optional<Ticket> optionalTicket = ticketRepository.findById(ticketId);
+        if(optionalTicket.isEmpty()){
+            throw new RuntimeException("Ticket not found");
+        }
+
+        Ticket ticket = optionalTicket.get(); 
+
+        if(!user.getId().equals(ticket.getCreatedBy().getId())){
+            throw new RuntimeException("You are unauthorized to edit this ticket");
+        }
+
+        ticket.setTitle(newTitle);
+        ticket.setDescription(newDescription);
+        return ticketRepository.save(ticket);
+
+    }
+
     public Ticket updateTicketStatus(Long ticketId, String newStatus, User user){
         if(user.getRole().equals("USER")){
             throw new RuntimeException("Unauthorized");
