@@ -20,7 +20,7 @@ public class Ticket {
     private String status;
     
     @ManyToOne
-    @JoinColumn(name = "ticket_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User createdBy; 
 
     private LocalDateTime createdAt;
