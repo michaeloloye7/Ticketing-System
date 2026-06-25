@@ -20,7 +20,6 @@ public class TicketController {
 
     @PostMapping("/tickets/create")
     public String createTicket(@RequestParam String title, @RequestParam String description, Model model) {
-        // For simplicity, we are using a hardcoded user. In a real application, you would get the logged-in user from the session.
         User createdBy = new User();
         createdBy.setId(1L); 
         createdBy.setEmail("user@example.com");
