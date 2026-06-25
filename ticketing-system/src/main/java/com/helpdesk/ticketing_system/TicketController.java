@@ -19,9 +19,8 @@ public class TicketController {
     }
 
     @PostMapping("/tickets/create")
-    public String createTicket(@RequestParam String title, @RequestParam String description, Model model) {
+    public String createTicket(@RequestParam String title, @RequestParam String description) {
         User createdBy = new User();
-        createdBy.setId(1L); 
         createdBy.setEmail("user@example.com");
         ticketService.createTicket(title, description, createdBy);
         return "redirect:/tickets";

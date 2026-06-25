@@ -1,11 +1,14 @@
 package com.helpdesk.ticketing_system;
 
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class UserController {
@@ -36,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestParam String email, @RequestParam String password, Model model) {
+    public String loginUser(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
         User user = userService.login(email, password);
 
         if (user == null) {
@@ -46,6 +49,11 @@ public class UserController {
 
         // For simplicity, we just redirect to a dashboard page
         model.addAttribute("user", user); 
-        return "dashboard";
+
+        //Store the logged in user in the session so other parts of the app can identify who is logged in. 
+        session.setAttribute("loggedInUser", user);
+
+        return "dashboard"; 
+
     }
 }
