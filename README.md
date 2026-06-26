@@ -29,7 +29,7 @@ Ticket Lifecycle:
 OPEN -> IN PROGRESS -> RESOLVED 
 
 # Run the project
-  git clone clone https://github.com/moloye7/Ticketing-System.git
+  git clone clone https://github.com/michaeloloye7/Ticketing-System.git
   
   cd Ticketing-System
   
