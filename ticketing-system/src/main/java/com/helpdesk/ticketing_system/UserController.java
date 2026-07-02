@@ -53,7 +53,7 @@ public class UserController {
         //Store the logged in user in the session so other parts of the app can identify who is logged in. 
         session.setAttribute("loggedInUser", user);
 
-        return "dashboard"; 
+        return "redirect:/tickets"; 
 
     }
 }

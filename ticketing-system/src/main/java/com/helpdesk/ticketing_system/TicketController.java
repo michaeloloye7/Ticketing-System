@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class TicketController {
@@ -25,6 +27,15 @@ public class TicketController {
         ticketService.createTicket(title, description, createdBy);
         return "redirect:/tickets";
     }
+
+    @GetMapping("/tickets")
+    public String getTickets(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
+        List<Ticket> tickets = ticketService.getTickets(user);
+        model.addAttribute("tickets", tickets);
+        return "dashboard";
+    }
+    
 
 }
 
