@@ -7,5 +7,10 @@
 <body>
 <h1>Dashboard</h1>
 
+<!-- Display the welcome message -->
+<h2>Welcome, <span th:text="${user.name}"></span>!</h2>
+
+<br>
+<button th:href="@{/create-ticket}">Create a New Ticket</button><br><br>
 
 </body>
